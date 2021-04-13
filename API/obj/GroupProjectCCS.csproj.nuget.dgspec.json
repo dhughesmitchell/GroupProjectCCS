@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\GroupProjectCCS.csproj": {}
+    "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\API\\GroupProjectCCS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\GroupProjectCCS.csproj": {
+    "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\API\\GroupProjectCCS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\GroupProjectCCS.csproj",
+        "projectUniqueName": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\API\\GroupProjectCCS.csproj",
         "projectName": "GroupProjectCCS",
-        "projectPath": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\GroupProjectCCS.csproj",
+        "projectPath": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\API\\GroupProjectCCS.csproj",
         "packagesPath": "C:\\Users\\dhugh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\obj\\",
+        "outputPath": "C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -47,6 +47,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "mysql.data": {
+              "target": "Package",
+              "version": "[8.0.23, )"
             }
           },
           "imports": [
