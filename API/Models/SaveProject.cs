@@ -5,6 +5,19 @@ namespace API.Models
 {
     public class SaveProject : IInsert
     {
+        public static void CreateProjectTable() {
+            ConnectionString myConnection = new ConnectionString();
+            string cs = myConnection.cs;
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            string stm = @"CREATE TABLE projects(projectID INTEGER PRIMARY KEY AUTO_INCREMENT, startDate TEXT, deliveryDate TEXT, projectName TEXT, paymentMethod TEXT, currentStatus TEXT, managerName TEXT, clientName TEXT)";
+
+            using var cmd = new MySqlCommand(stm, con);
+
+            cmd.ExecuteNonQuery();
+        }
         public void InsertProject(Project myProject) {
             ConnectionString myConnection = new ConnectionString();
             string cs = myConnection.cs;

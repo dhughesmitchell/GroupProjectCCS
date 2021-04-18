@@ -27,11 +27,17 @@ namespace GroupProjectCCS
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddCors(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GroupProjectCCS", Version = "v1" });
+               options.AddPolicy("AnotherPolicy", 
+               builder =>
+               {
+                   builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+               }); 
             });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,8 +46,6 @@ namespace GroupProjectCCS
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GroupProjectCCS v1"));
             }
 
             app.UseHttpsRedirection();

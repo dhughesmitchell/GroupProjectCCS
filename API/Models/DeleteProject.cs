@@ -1,8 +1,9 @@
+using API.Models.Interfaces;
 using MySql.Data.MySqlClient;
 
 namespace API.Models
 {
-    public class DeleteProject
+    public class DeleteProject : IDelete
     {
         public void DeleteProjectByID(int projectID) {
             ConnectionString myConnection = new ConnectionString();
