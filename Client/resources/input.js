@@ -5,10 +5,10 @@ function getProjects() {
         console.log(response);
         return response.json();
     }).then(function(json){
-        let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Delete</th></tr>";
+        let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Breakout View</th><th>Delete</th></tr>";
         json.forEach((project)=>{
             var id = project.projectID;
-            html += "<tr><td>" + project.projectID + "</td><td>" + "<a href=\"./breakoutview.html\" target=\"_blank\">" + project.projectName + "</a>" + "</td><td>" + project.currentStatus + "</td><td><button onclick=\"newDelete(" + project.projectID + ")\">X</button></tr>";
+            html += "<tr><td>" + project.projectID + "</td><td>" + "<a href=\"./breakoutview.html\" id=\"breakout\" target=\"_blank\">" + project.projectName + "</a>" + "</td><td>" + project.currentStatus + "</td><td><button onclick=\"breakoutPage(" + project.projectID + ")\">Go</button></td><td><button onclick=\"newDelete(" + project.projectID + ")\">X</button></td></tr>";
         })
         html += "</table>"
         document.getElementById("project").innerHTML = html;
@@ -149,17 +149,47 @@ function newDelete(id) {
     })
 }
 
-function breakoutView(id) {
+function breakoutView(goid) {
+    var buttonid = document.getElementById("breakout").value;
+    console.log(goid);
+    var id;
+    if(buttonid == null) {
+        id = goid;
+    }
     const breakoutUrl = "https://localhost:5001/API/Project"
-    const projectid = id;
 
-
+    
+    fetch(breakoutUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
+        json.forEach((project)=>{
+            if(project.projectID == id) {
+            html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+            }
+        })
+        html += "</table>"
+        document.getElementById("info").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    })
+    
 }
+    
 
 function sortStatus() {
     const statusUrl = "https://localhost:5001/API/Project"
     var statusInfo = "error"
     var status = document.getElementsByName('sortstatus')
+
+    for (var i = 0, length = status.length; i < length; i++) {
+        if (status[i].checked) {
+            statusInfo = status[i].value;
+
+            break;
+        }
+    }
 
     fetch(statusUrl).then(function(response){
         console.log(response);
@@ -167,8 +197,9 @@ function sortStatus() {
     }).then(function(json){
         let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
         json.forEach((project)=>{
-            project.filter()
+            if(project.currentStatus == statusInfo) {
             html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+            }
         })
         html += "</table>"
         document.getElementById("info").innerHTML = html;
@@ -178,5 +209,40 @@ function sortStatus() {
     
 }
 
+function sortPayment() {
+    const paymentUrl = "https://localhost:5001/API/Project"
+    var paymentInfo = "error"
+    var payment = document.getElementsByName('sortpayment')
+
+    for (var i = 0, length = payment.length; i < length; i++) {
+        if (payment[i].checked) {
+            paymentInfo = payment[i].value;
+
+            break;
+        }
+    }
+
+    fetch(paymentUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
+        json.forEach((project)=>{
+            if(project.paymentMethod == paymentInfo) {
+            html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+            }
+        })
+        html += "</table>"
+        document.getElementById("info").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    })
+    
+}
+
+function breakoutPage(id) {
+    var opened; // var opened = window.open("C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\Client\\resources\\allprojects.html");
+    opened.onload = breakoutView(id);
+}
 
 

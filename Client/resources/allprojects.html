@@ -16,7 +16,7 @@
 </nav>
 <div class="banner">
     <h1>Capstone Consulting Services</h1>
-    <img id="CSSlogo" src="./resources/images/CCSLogo.png" alt="">
+    <img id="CSSlogo" src="./images/CCSLogo.png" alt="">
     <p>CCS All Project Info</p>
 </div>
 
@@ -30,12 +30,29 @@
     <div>
         <li>
             <form onsubmit="return false;" method="sortstatus">
-                <input type="radio" name="status" value="On-Time" checked="checked">On Time</input>
-                <input type="radio" name="status" value="At-Risk">At Risk</input>
+                <input type="radio" name="sortstatus" value="On-Time" checked="checked">On-Time</input>
+                <input type="radio" name="sortstatus" value="At-Risk">At-Risk</input>
                 <input type="submit" name="Submit" onclick="sortStatus()">
             
             
             </form>
+            <form onsubmit="return false;" method="sortpayment">
+                <input type="radio" name="sortpayment" value="Hourly" checked="checked">Hourly</input>
+                <input type="radio" name="sortpayment" value="On-Completion">On-Completion</input>
+                <input type="submit" name="Submit" onclick="sortPayment()">
+            
+            
+            </form>
+            <div>
+                <button onclick="allInfo()">Clear Sort</button>
+            </div>
+            
+            <form onsubmit="return false;" method="breakout">
+                <label for="breakout">View Post by ID:</label>
+                <input type="number" name="breakout" id="breakout"/>
+                <input type="submit" value="Breakout" onclick="breakoutView()">
+            </form>
+
         </li>
 
     </div>
