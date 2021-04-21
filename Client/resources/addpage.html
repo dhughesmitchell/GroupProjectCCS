@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./input.css">
+    <title>Add Page</title>
+</head>
+<body>
+    <script type = "text/javascript" src="./input.js"></script>
+    <nav class ="navbar">
+        <ul>
+            <li><a class="red" href="">Home</a></li>
+            <li><a href=""><button onclick="allInfo()">All Project Info</button></a></li>
+            <li><a href=""><button onclick="addPage()">Add Project</button></a></li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <h1>Capstone Consulting Services</h1>
+        <img id="CSSlogo" src="./resources/images/CCSLogo.png" alt="">
+        <p>CCS Add New Project</p>
+    </div>
+    <div>
+    <form onsubmit="return false;" method="newpost">
+            <label for="posttext">Project Name:</label>
+            <input type="text" name="posttext" id="posttext"/>
+            <label for="deliverydate">Delivery Date:</label>
+            <input type="text" name="deliverydate" id="deliverydate"/>
+            
+            <label for="managername">Manager Name:</label>
+            <input type="text" name="managername" id="managername"/>
+            <label for="clientname">Client Name:</label>
+            <input type="text" name="clientname" id="clientname"/>
+
+            <label for="status">Current Status:</label>
+            <input type="radio" name="status" value="On-Time" checked="checked">On Time</input>
+            <input type="radio" name="status" value="At-Risk">At Risk</input>
+
+            <label for="paymentmethod">Payment Method:</label>
+            <input type="radio" name="payment" value="On-Completion" checked="checked">On Completion</input>
+            <input type="radio" name="payment" value="Hourly">Hourly</input>
+
+            <input type="submit" value="Submit" onclick="addProject()">
+        </form>
+    </div>
+</body>
+</html>

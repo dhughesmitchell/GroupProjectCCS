@@ -11,7 +11,7 @@ namespace API.Models
             using var con = new MySqlConnection(cs);
             con.Open();
 
-            string stm = @"INSERT INTO projects(projectID, startDate, deliveryDate, projectName, paymentMethod, currentStatus, managerName, clientName) VALUES(@projectID, @startDate, @deliveryDate, @projectName, @paymentMethod, @currentStatus, @managerName, @clientName)";
+            string stm = @"UPDATE projects set currentStatus = @currentStatus WHERE projectID = @projectID";
             using var cmd = new MySqlCommand(stm, con);
 
             cmd.Parameters.AddWithValue("@projectID", myProject.projectID);
@@ -20,8 +20,8 @@ namespace API.Models
             cmd.Parameters.AddWithValue("@projectName", myProject.projectName);
             cmd.Parameters.AddWithValue("@paymentMethod", myProject.paymentMethod);
             cmd.Parameters.AddWithValue("@currentStatus", myProject.currentStatus);
-            cmd.Parameters.AddWithValue("@managerID", myProject.managerName);
-            cmd.Parameters.AddWithValue("@clientID", myProject.clientName);
+            cmd.Parameters.AddWithValue("@managerName", myProject.managerName);
+            cmd.Parameters.AddWithValue("@clientName", myProject.clientName);
             
 
             cmd.Prepare();

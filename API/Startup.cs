@@ -33,8 +33,8 @@ namespace GroupProjectCCS
                builder =>
                {
                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                }); 
             });
             services.AddControllers();
@@ -51,6 +51,8 @@ namespace GroupProjectCCS
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

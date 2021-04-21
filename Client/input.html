@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone Consulting Services</title>
+    <link rel="stylesheet" href="./resources/input.css">
+</head>
+
+
+<body onload = "getProjects()">
+
+    <nav class ="navbar">
+        <ul>
+            <li><a class="red" href="">Home</a></li>
+            <li><a href=""><button onclick="allInfoPage()">All Project Info</button></a></li>
+            <li><a href=""><button onclick="addPage()">Add Project</button></a></li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <h1>Capstone Consulting Services</h1>
+        <img id="CSSlogo" src="./resources/images/CCSLogo.png" alt="">
+        <p>CCS Project Status</p>
+    </div>
+    <div class="project-section">
+        <span id="project" class="bold">CCS Current Projects</span>
+        <p class="bold">CCS Projects</p>
+    </div>
+    
+    <script type="text/javascript" src="./resources/input.js"></script>
+    <div id="project">
+
+    </div>
+    <div id="info">
+
+    </div>
+
+
+    <div>
+        
+        <form onsubmit="return false;" method="editpost">
+            <label for="editid">Edit ID:</label>
+            <input type="number" name="editid" id="editid"/>
+            <label for="status">Current Status:</label>
+            <input type="radio" name="status" value="On-Time" checked="checked">On Time</input>
+            <input type="radio" name="status" value="At-Risk">At Risk</input>
+            <input type="submit" name="Submit" onclick="editProject()">
+        </form>
+        <form onsubmit="return false;" method="deletepost">
+            <label for="delete">Delete Post by ID:</label>
+            <input type="number" name="delete" id="delete"/>
+            <input type="submit" value="Delete" onclick="deleteProject()">
+        </form>
+    </div>
+    <div>
+        <button onclick="addPage()">Add Project</button>
+    </div>
+    <div>
+        <button onclick="allInfoPage()">View All Info</button>
+    </div>
+
+</body>
+</html>

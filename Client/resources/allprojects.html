@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./input.css">
+    <title>View All Projects</title>
+</head>
+<nav class ="navbar">
+    <ul>
+        <li><a class="red" href="">Home</a></li>
+        <li><a href=""><button onclick="allInfo()">All Project Info</button></a></li>
+        <li><a href=""><button onclick="addPage()">Add Project</button></a></li>
+    </ul>
+</nav>
+<div class="banner">
+    <h1>Capstone Consulting Services</h1>
+    <img id="CSSlogo" src="./resources/images/CCSLogo.png" alt="">
+    <p>CCS All Project Info</p>
+</div>
+
+<body onload = "allInfo()">
+    <script type="text/javascript" src="./input.js"></script>
+    <div id="info"></div>
+
+    <div>
+        <span class="bold">Sort by Status:</span>
+    </div>
+    <div>
+        <li>
+            <form onsubmit="return false;" method="sortstatus">
+                <input type="radio" name="status" value="On-Time" checked="checked">On Time</input>
+                <input type="radio" name="status" value="At-Risk">At Risk</input>
+                <input type="submit" name="Submit" onclick="sortStatus()">
+            
+            
+            </form>
+        </li>
+
+    </div>
+    
+</body>
+</html>
