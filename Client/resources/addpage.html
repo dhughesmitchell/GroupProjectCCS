@@ -11,9 +11,9 @@
     <script type = "text/javascript" src="./input.js"></script>
     <nav class ="navbar">
         <ul>
-            <li><a class="red" href="">Home</a></li>
-            <li><a href=""><button onclick="allInfo()">All Project Info</button></a></li>
-            <li><a href=""><button onclick="addPage()">Add Project</button></a></li>
+            <li><a class="red" href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\input.html">Home</a></li>
+            <li><a href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\resources\allprojects.html">All Project Info</a></li>
+            <li><a href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\resources\addpage.html">Add Project</a></li>
         </ul>
     </nav>
     <div class="banner">
@@ -23,24 +23,32 @@
     </div>
     <div>
     <form onsubmit="return false;" method="newpost">
-            <label for="posttext">Project Name:</label>
+            <label for="posttext" style="font-size: 20px;">Project Name:</label>
             <input type="text" name="posttext" id="posttext"/>
-            <label for="deliverydate">Delivery Date:</label>
+            <br>
+            <br>
+            <label for="deliverydate" style="font-size: 20px;">Delivery Date:</label>
             <input type="text" name="deliverydate" id="deliverydate"/>
-            
-            <label for="managername">Manager Name:</label>
+            <br>
+            <br>
+            <label for="managername" style="font-size: 20px;">Manager Name:</label>
             <input type="text" name="managername" id="managername"/>
-            <label for="clientname">Client Name:</label>
+            <br>
+            <br>
+            <label for="clientname" style="font-size: 20px;">Client Name:</label>
             <input type="text" name="clientname" id="clientname"/>
-
-            <label for="status">Current Status:</label>
-            <input type="radio" name="status" value="On-Time" checked="checked">On Time</input>
-            <input type="radio" name="status" value="At-Risk">At Risk</input>
-
-            <label for="paymentmethod">Payment Method:</label>
-            <input type="radio" name="payment" value="On-Completion" checked="checked">On Completion</input>
-            <input type="radio" name="payment" value="Hourly">Hourly</input>
-
+            <br>
+            <br>
+            <label for="status" style="font-size: 20px;">Current Status:</label>
+            <input type="radio" name="status" value="On-Time" checked="checked" style="font-size: 20px;">On Time</input>
+            <input type="radio" name="status" value="At-Risk" style="font-size: 20px;">At Risk</input>
+            <br>
+            <br>
+            <label for="paymentmethod" style="font-size: 20px;">Payment Method:</label>
+            <input type="radio" name="payment" value="On-Completion" checked="checked" style="font-size: 20px;">On Completion</input>
+            <input type="radio" name="payment" value="Hourly" style="font-size: 20px;">Hourly</input>
+            <br>
+            <br>
             <input type="submit" value="Submit" onclick="addProject()">
         </form>
     </div>

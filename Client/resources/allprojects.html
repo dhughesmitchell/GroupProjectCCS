@@ -9,9 +9,9 @@
 </head>
 <nav class ="navbar">
     <ul>
-        <li><a class="red" href="">Home</a></li>
-        <li><a href=""><button onclick="allInfo()">All Project Info</button></a></li>
-        <li><a href=""><button onclick="addPage()">Add Project</button></a></li>
+        <li><a class="red" href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\input.html">Home</a></li>
+            <li><a href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\resources\allprojects.html">All Project Info</a></li>
+            <li><a href="C:\Users\bento\OneDrive\Documents\MIS\321\GroupProjectCCS-main\Client\resources\addpage.html">Add Project</a></li>
     </ul>
 </nav>
 <div class="banner">
@@ -25,10 +25,10 @@
     <div id="info"></div>
 
     <div>
-        <span class="bold">Sort by Status:</span>
+        <span class="bold">Sort Methods:</span>
     </div>
     <div>
-        <li>
+        
             <form onsubmit="return false;" method="sortstatus">
                 <input type="radio" name="sortstatus" value="On-Time" checked="checked">On-Time</input>
                 <input type="radio" name="sortstatus" value="At-Risk">At-Risk</input>
@@ -50,10 +50,11 @@
             <form onsubmit="return false;" method="breakout">
                 <label for="breakout">View Post by ID:</label>
                 <input type="number" name="breakout" id="breakout"/>
+                
                 <input type="submit" value="Breakout" onclick="breakoutView()">
             </form>
 
-        </li>
+        
 
     </div>
     

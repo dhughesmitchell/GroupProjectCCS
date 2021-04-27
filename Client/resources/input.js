@@ -8,7 +8,12 @@ function getProjects() {
         let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Breakout View</th><th>Delete</th></tr>";
         json.forEach((project)=>{
             var id = project.projectID;
-            html += "<tr><td>" + project.projectID + "</td><td>" + "<a href=\"./breakoutview.html\" id=\"breakout\" target=\"_blank\">" + project.projectName + "</a>" + "</td><td>" + project.currentStatus + "</td><td><button onclick=\"breakoutPage(" + project.projectID + ")\">Go</button></td><td><button onclick=\"newDelete(" + project.projectID + ")\">X</button></td></tr>";
+            if (project.currentStatus == "At-Risk"){
+                html += "<tr><td>" + project.projectID + "</td><td>" + "<a href=\"./breakoutview.html\" id=\"breakout\" target=\"_blank\" style=\"color:black\">" + project.projectName + "</a>" + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td><button onclick=\"breakoutPage(" + project.projectID + ")\">Go</button></td><td><button onclick=\"newDelete(" + project.projectID + ")\">X</button></td></tr>";
+            }
+            else{
+                html += "<tr><td>" + project.projectID + "</td><td>" + "<a href=\"./breakoutview.html\" id=\"breakout\" target=\"_blank\" style=\"color:black\">" + project.projectName + "</a>" + "</td><td>" + project.currentStatus + "</td><td><button onclick=\"breakoutPage(" + project.projectID + ")\">Go</button></td><td><button onclick=\"newDelete(" + project.projectID + ")\">X</button></td></tr>";
+            }
         })
         html += "</table>"
         document.getElementById("project").innerHTML = html;
@@ -112,7 +117,7 @@ function editProject() {
 }
 
 function addPage() {
-    var opened = window.open("C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\Client\\resources\\addpage.html");
+    var opened = window.open("C:\\Users\\bento\\OneDrive\\Documents\\MIS\\321\\GroupProjectCCS-main\\Client\\resources\\addpage.html");
 }
 
 function allInfo() {
@@ -124,7 +129,12 @@ function allInfo() {
         }).then(function(json){
             let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
             json.forEach((project)=>{
-                html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                if (project.currentStatus == "At-Risk"){
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
+                else{
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
             })
             html += "</table>"
             document.getElementById("info").innerHTML = html;
@@ -134,7 +144,7 @@ function allInfo() {
 }
 
 function allInfoPage() {
-    var opened = window.open("C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\Client\\resources\\allprojects.html");
+    var opened = window.open("C:\\Users\\bento\\OneDrive\\Documents\\MIS\\321\\GroupProjectCCS-main\\Client\\resources\\allprojects.html");
 }
 
 function newDelete(id) {
@@ -149,13 +159,9 @@ function newDelete(id) {
     })
 }
 
-function breakoutView(goid) {
+function breakoutView() {
     var buttonid = document.getElementById("breakout").value;
-    console.log(goid);
-    var id;
-    if(buttonid == null) {
-        id = goid;
-    }
+    
     const breakoutUrl = "https://localhost:5001/API/Project"
 
     
@@ -165,9 +171,13 @@ function breakoutView(goid) {
     }).then(function(json){
         let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
         json.forEach((project)=>{
-            if(project.projectID == id) {
-            html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
-            }
+            if(project.projectID == buttonid) {
+                if (project.currentStatus == "At-Risk"){
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
+                else{
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }             }
         })
         html += "</table>"
         document.getElementById("info").innerHTML = html;
@@ -198,7 +208,12 @@ function sortStatus() {
         let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
         json.forEach((project)=>{
             if(project.currentStatus == statusInfo) {
-            html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                if (project.currentStatus == "At-Risk"){
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
+                else{
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }            
             }
         })
         html += "</table>"
@@ -229,8 +244,40 @@ function sortPayment() {
         let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
         json.forEach((project)=>{
             if(project.paymentMethod == paymentInfo) {
-            html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
-            }
+                if (project.currentStatus == "At-Risk"){
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
+                else{
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }            }
+        })
+        html += "</table>"
+        document.getElementById("info").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    })
+    
+}
+
+function breakoutView2(goid) {
+    var buttonid = document.getElementById("breakout").value;
+    
+    const breakoutUrl = "https://localhost:5001/API/Project"
+
+    
+    fetch(breakoutUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        let html = "<table class=\"center\"><tr><th>Project ID</th><th>Project Name</th><th>Project Status</th><th>Start Date</th><th>Delivery Date</th><th>Payment Method</th><th>Manager Name</th><th>Client Name</th></tr>";
+        json.forEach((project)=>{
+            if(project.projectID == goid) {
+                if (project.currentStatus == "At-Risk"){
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td style=\"color:red\">" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }
+                else{
+                    html += "<tr><td>" + project.projectID + "</td><td>" + project.projectName + "</td><td>" + project.currentStatus + "</td><td>" + project.startDate + "</td><td>" + project.deliveryDate + "</td><td>" + project.paymentMethod + "</td><td>" + project.managerName + "</td><td>" + project.clientName + "</td></tr>";
+                }             }
         })
         html += "</table>"
         document.getElementById("info").innerHTML = html;
@@ -242,7 +289,7 @@ function sortPayment() {
 
 function breakoutPage(id) {
     var opened; // var opened = window.open("C:\\Users\\dhugh\\Documents\\MIS321\\GroupProjectCCS\\Client\\resources\\allprojects.html");
-    opened.onload = breakoutView(id);
+    opened.onload = breakoutView2(id);
 }
 
 
